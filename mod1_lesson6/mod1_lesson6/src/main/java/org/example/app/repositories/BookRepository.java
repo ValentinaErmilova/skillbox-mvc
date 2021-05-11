@@ -1,4 +1,4 @@
-package org.example.repositories;
+package org.example.app.repositories;
 
 import org.apache.log4j.Logger;
 import org.example.web.dto.Book;

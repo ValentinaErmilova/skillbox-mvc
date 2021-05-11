@@ -1,4 +1,4 @@
-package org.example.repositories;
+package org.example.app.repositories;
 
 import java.util.List;
 
