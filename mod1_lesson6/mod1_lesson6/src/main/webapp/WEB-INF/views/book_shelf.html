@@ -36,12 +36,15 @@
             <tr>
                 <td>
                     <input type="text" placeholder="author" th:field="*{author}">
+                    <p th:each="err : ${#fields.errors('author')}" th:text="${err}"></p>
                 </td>
                 <td>
                     <input type="text" placeholder="book_title" th:field="*{title}">
+                    <p th:each="err : ${#fields.errors('title')}" th:text="${err}"></p>
                 </td>
                 <td>
                     <input type="text" placeholder="size (pages)" th:field="*{size}">
+                    <p th:each="err : ${#fields.errors('size')}" th:text="${err}"></p>
                 </td>
                 <td>
                     <input type="submit" value="save">
@@ -50,47 +53,70 @@
         </table>
     </form>
 
-    <form method="get" th:action="@{/books/search}">
+    <form method="get" th:action="@{/books/search}" th:object="${bookFormSearch}">
         <table>
             <tr>
                 <td>
-                    <select th:name="bookKeyToSearch">
-                        <option value="author">author</option>
-                        <option value="title">book title</option>
-                        <option value="size">size (pages)</option>
+                    <select th:field="*{key}">
+                        <option th:value="author">author</option>
+                        <option th:value="title">book title</option>
+                        <option th:value="size">size (pages)</option>
                     </select>
                 </td>
                 <td>
-                    <input type="text" placeholder="value" th:name="bookValueToSearch">
+                    <input type="text" placeholder="value" th:field="*{value}">
                 </td>
                 <td>
                     <input type="submit" value="search">
                 </td>
+                <td>
+                    <p th:each="err : ${#fields.errors()}" th:text="${err}"></p>
+                </td>
             </tr>
         </table>
     </form>
 
-    <form method="post" th:action="@{/books/remove}">
+    <form method="post" th:action="@{/books/remove}" th:object="${bookFormRemove}">
         <table>
             <tr>
                 <td>
-                    <select th:name="bookKeyToRemove">
-                        <option value="id">id</option>
-                        <option value="author">author</option>
-                        <option value="title">book title</option>
-                        <option value="size">size (pages)</option>
+                    <select th:field="*{key}">
+                        <option th:value="id">id</option>
+                        <option th:value="author">author</option>
+                        <option th:value="title">book title</option>
+                        <option th:value="size">size (pages)</option>
                     </select>
                 </td>
                 <td>
-                    <input type="text" placeholder="value" th:name="bookValueToRemove">
+                    <input type="text" placeholder="value" th:field="*{value}">
                 </td>
                 <td>
                     <input type="submit" value="remove">
                 </td>
+                <td>
+                    <p th:each="err : ${#fields.errors()}" th:text="${err}"></p>
+                </td>
             </tr>
         </table>
     </form>
 
+    <form method="post" th:action="@{/books/uploadFile}" enctype="multipart/form-data">
+        <table>
+            <tr>
+                <td>
+                    <input type="file" name="file">
+                </td>
+                <td>
+                    <input type="submit" name="Upload">
+                </td>
+                <td th:if="${fileNotFound}">
+                    <p>Please select file for upload</p>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <a id="files_href" th:href="@{/files/list}">Files for download</a>
 
     <table id="books">
         <tr>

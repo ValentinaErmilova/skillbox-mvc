@@ -1,9 +1,15 @@
-package org.example.web.dto;
+package org.example.web.dto.forms;
+
+import javax.validation.constraints.NotEmpty;
 
 public class LoginForm {
-
+    @NotEmpty
     private Integer id;
+
+    @NotEmpty
     private String username;
+
+    @NotEmpty
     private String password;
 
     public LoginForm(String username, String password) {

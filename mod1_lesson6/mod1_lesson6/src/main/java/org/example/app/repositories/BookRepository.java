@@ -2,6 +2,7 @@ package org.example.app.repositories;
 
 import org.apache.log4j.Logger;
 import org.example.web.dto.Book;
+import org.example.web.dto.forms.BookForm;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -26,22 +27,23 @@ public class BookRepository implements ProjectRepository<Book> {
     }
 
     @Override
-    public List<Book> getByValueFromKey(String key, String value) {
+    public List<Book> getByValueFromKey(Object o) {
+        BookForm bookForm = (BookForm) o;
         List<Book> searchedBooks = new ArrayList<>();
         for (Book book : retreiveAll()) {
-            switch (key) {
+            switch (bookForm.getKey()) {
                 case "author":
-                    if (value.equals(book.getAuthor())) {
+                    if (bookForm.getValue().equals(book.getAuthor())) {
                         searchedBooks.add(book);
                     }
                     break;
                 case "title":
-                    if (value.equals(book.getTitle())) {
+                    if (bookForm.getValue().equals(book.getTitle())) {
                         searchedBooks.add(book);
                     }
                     break;
                 case "size":
-                    Integer sizeValue = value.isEmpty() ? null : Integer.parseInt(value);
+                    Integer sizeValue = bookForm.getValue().isEmpty() ? null : Integer.parseInt(bookForm.getValue());
                     if (book.getSize() == null && sizeValue == null || book.getSize() != null && book.getSize().equals(sizeValue)) {
                         searchedBooks.add(book);
                     }
@@ -52,11 +54,12 @@ public class BookRepository implements ProjectRepository<Book> {
     }
 
     @Override
-    public void removeByValueFromKey(String keyToRemove, String valueToRemove) {
-        valueToRemove = valueToRemove.trim();
+    public void remove(Object remove) {
+        BookForm bookForm = (BookForm) remove;
+        String valueToRemove = bookForm.getValue().trim();
         for (Book book : retreiveAll()) {
             boolean removeBook = false;
-            switch (keyToRemove) {
+            switch (bookForm.getKey()) {
                 case "id":
                     Integer idValue = valueToRemove.isEmpty() ? null : Integer.parseInt(valueToRemove);
                     removeBook = book.getId() == null && idValue == null || book.getId() != null && book.getId().equals(idValue);

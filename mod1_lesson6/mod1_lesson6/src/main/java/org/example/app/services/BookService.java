@@ -2,6 +2,7 @@ package org.example.app.services;
 
 import org.example.app.repositories.ProjectRepository;
 import org.example.web.dto.Book;
+import org.example.web.dto.forms.BookForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,11 +26,11 @@ public class BookService {
         bookRepo.store(book);
     }
 
-    public void removeBookByValueFromKey(String bookKeyToRemove, String bookIdToRemove) {
-        bookRepo.removeByValueFromKey(bookKeyToRemove, bookIdToRemove);
+    public void remove(BookForm removeBook) {
+        bookRepo.remove(removeBook);
     }
 
-    public List<Book> searchBookByValueFromKey(String bookKeyToSearch, String bookValueToSearch) {
-        return bookRepo.getByValueFromKey(bookKeyToSearch, bookValueToSearch);
+    public List<Book> search(BookForm searchBook) {
+        return bookRepo.getByValueFromKey(searchBook);
     }
 }

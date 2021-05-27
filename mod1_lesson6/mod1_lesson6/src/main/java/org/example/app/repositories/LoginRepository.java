@@ -1,7 +1,7 @@
 package org.example.app.repositories;
 
 import org.apache.log4j.Logger;
-import org.example.web.dto.LoginForm;
+import org.example.web.dto.forms.LoginForm;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -25,12 +25,10 @@ public class LoginRepository implements ProjectRepository<LoginForm> {
     }
 
     @Override
-    public void removeByValueFromKey(String keyToRemove, String valueToRemove) {
-        return;
-    }
+    public void remove(Object o) {}
 
     @Override
-    public List<LoginForm> getByValueFromKey(String key, String value) {
+    public List<LoginForm> getByValueFromKey(Object o) {
         return null;
     }
 }

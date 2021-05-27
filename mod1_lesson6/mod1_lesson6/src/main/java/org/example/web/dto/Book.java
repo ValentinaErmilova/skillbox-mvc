@@ -1,9 +1,19 @@
 package org.example.web.dto;
 
+import javax.validation.constraints.*;
+
 public class Book {
     private Integer id;
+
+    @NotBlank
     private String author;
+
+    @NotBlank
     private String title;
+    
+    @NotNull
+    @Min(1)
+    @Digits(integer = 7, fraction = 0)
     private Integer size;
 
     public Integer getId() {
@@ -36,10 +46,6 @@ public class Book {
 
     public void setSize(Integer size) {
         this.size = size;
-    }
-
-    public boolean canStore() {
-        return !this.getAuthor().isEmpty() || !this.getTitle().isEmpty() || this.getSize() != null;
     }
 
     @Override

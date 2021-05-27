@@ -20,9 +20,11 @@
     <!--        <property name="suffix" value=".html"/>-->
     <!--    </bean>-->
 
-
     <bean class="org.thymeleaf.spring5.view.ThymeleafViewResolver">
         <property name="templateEngine" ref="templateEngine"/>
+        <property name="characterEncoding" value="UTF-8"/>
+        <property name="forceContentType" value="true"/>
+        <property name="contentType" value="text/html; charset=UTF-8"/>
         <property name="order" value="1"/>
     </bean>
 
@@ -51,6 +53,8 @@
         <property name="cacheable" value="true"/>
     </bean>
 
-    <!--    <mvc:view-controller path="/books/shelf" view-name="book_shelf"/>-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="50000000"/>
+    </bean>
 
 </beans>

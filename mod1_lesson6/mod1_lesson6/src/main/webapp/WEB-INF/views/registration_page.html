@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <title><html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
@@ -35,6 +34,9 @@
     <input class="registration_item " type="password" placeholder="password" th:field="*{password}">
     <br>
     <input class="registration_item" type="submit" value="registration">
+    <div th:if="${#fields.hasErrors()}">
+      <p>Username or password are empty</p>
+    </div>
   </form>
 
 </div>

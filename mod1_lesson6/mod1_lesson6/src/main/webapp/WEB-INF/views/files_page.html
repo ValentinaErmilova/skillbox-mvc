@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>My files</title>
+  <style>
+    #root_container {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    #files {
+      width: 50%;
+      border-collapse: collapse;
+    }
+
+    table {
+      margin: 25px;
+    }
+
+    th {
+      text-align: left;
+    }
+
+    th, td {
+      border-bottom: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+  <div id="root_container">
+    <table id="files">
+      <tr>
+        <th>path</th>
+      </tr>
+      <tr th:each="file : ${filesList}">
+        <td><a th:href="@{'/files/download/' + ${file.name}}" th:text="${file.name}"></a></td>
+      </tr>
+    </table>
+  </div>
+</body>
+</html>

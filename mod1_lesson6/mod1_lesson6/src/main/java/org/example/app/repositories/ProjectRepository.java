@@ -7,7 +7,7 @@ public interface ProjectRepository<T> {
 
     void store(T book);
 
-    void removeByValueFromKey(String keyToRemove, String valueToRemove);
+    void remove(Object o);
 
-    List<T> getByValueFromKey(String key, String value);
+    List<T> getByValueFromKey(Object o);
 }

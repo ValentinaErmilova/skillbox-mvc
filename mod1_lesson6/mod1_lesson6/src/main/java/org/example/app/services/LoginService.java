@@ -2,7 +2,7 @@ package org.example.app.services;
 
 import org.apache.log4j.Logger;
 import org.example.app.repositories.ProjectRepository;
-import org.example.web.dto.LoginForm;
+import org.example.web.dto.forms.LoginForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
